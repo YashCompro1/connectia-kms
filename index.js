@@ -31,7 +31,7 @@ app.post("/connectia", (req, res) => {
         Buffer.from(signature, 'base64')
     );
     
-    const { userId, productId, key, expiry } = JSON.parse(payload)
+    const { userId, productId, key, expiry } = payload
 
     if (!verify) {
         return res.status(403).send('Invalid signature')
