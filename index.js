@@ -38,7 +38,7 @@ app.post("/connectia", (req, res) => {
     }
 
 
-    if (new Date().getTime() > expiry) {
+    if (new Date().getTime() > expiry + 60000) {
         return res.status(403).send('Time expired')
     }
 
