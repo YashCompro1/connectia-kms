@@ -30,16 +30,18 @@ app.post("/connectia", (req, res) => {
         },
         Buffer.from(signature, 'base64')
     );
+    
+    const { userId, productId, key, expiry } = JSON.parse(payload)
 
     if (!verify) {
         return res.status(403).send('Invalid signature')
     }
 
+
     if (new Date().getTime() > expiry) {
         return res.status(403).send('Time expired')
     }
 
-    const { userId, productId, key, expiry } = JSON.parse(payload)
 
     const data = new URLSearchParams({
         user: userId,
